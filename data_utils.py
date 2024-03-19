@@ -8,7 +8,7 @@ import torchvision.datasets as datasets
 def generate_path_to_attentions():
     path_to_attn = {}
 
-    attn = glob(r'D:\\Caoz\\Gitee\\cam_proj\\cam_proj\dataset\\label\\' + '*')
+    attn = glob(r'./dataset/label/' + '*')
     for item in attn:
         _, img_path = os.path.split(item)
         attention = cv2.resize(cv2.imread(item), (224, 224), interpolation=cv2.INTER_AREA)[:, :, 0]

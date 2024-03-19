@@ -1,2 +1,7 @@
 dataset/*
 !dataset/
+
+model/base/*
+!model/base/
+
+*.pyc

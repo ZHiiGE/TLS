@@ -74,14 +74,14 @@ def show_cam_on_image(img, mask, path, file_name):
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, default='resnet50',choices=model_list, help='type of model')
-    parser.add_argument('--use-cuda', action='store_true',
+    parser.add_argument('--use_cuda', action='store_true',
                         help='Use NVIDIA GPU acceleration')
     parser.add_argument('--n_epoch', type=int, default=50,
                         help='Number of epoch to run')
     parser.add_argument('--data_dir', default='dataset', type=str)
-    parser.add_argument('--save_path', type=str, default='./model/TLS/resnet50',
+    parser.add_argument('--save_path', type=str, default='./model/TLS/',
                         help='The address for storing the models.')
-    parser.add_argument('--load_path', type=str, default='./model/baseline/resnet50',
+    parser.add_argument('--load_path', type=str, default='./model/baseline/',
                         help='The address for the base models.')
     parser.add_argument('--train-batch', default=20, type=int, metavar='N',
                         help='train batchsize (default: 256)')
@@ -427,7 +427,7 @@ def model_train_with_map(model, train_loader, val_loader, n_fold):
         if (val_acc >= best_val_acc)and (val_iou > best_val_iou):          
             best_val_iou = val_iou
             best_val_acc = val_acc
-            torch.save(model, os.path.join(args.save_path, f'model_out_{n_fold}.pth'))
+            torch.save(model, os.path.join(os.path.join(args.save_path,args.model), f'model_out_{n_fold}.pth'))
             print('UPDATE!!!')
         print('Epoch:', epoch, ', Train Time:', train_time, ', Train Loss:', np.average(train_losses), ', Train Acc:', train_acc, 'Val Acc:', val_acc, 'Val IOU:', val_iou)
     return best_val_iou
